@@ -60,39 +60,40 @@ export default function Cart() {
                     <span className="font-bold text-sm">{Item.title}</span>
                   </div>
                 </div>
-                <div className="flex justify-center gap-5 w-1/3">
-                  <button onClick={() => context.decrease(Item.id)}>
-                    <svg
-                      className="fill-current text-gray-600 w-3 cursor-pointer"
-                      viewBox="0 0 448 512"
-                    >
-                      <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                    </svg>
-                  </button>
-
+               <div className="flex md:flex-row   ml-2 flex-col  justify-center gap-5 w-1/3">
+                  <div className=" flex gap-2  ml-2">
+                    <button onClick={() => context.decrease(Item.id)}>
+                      <svg
+                        className="fill-current text-gray-600 w-3 cursor-pointer"
+                        viewBox="0 0 448 512"
+                      >
+                        <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                      </svg>
+                    </button>
+                    <input
+                      className="mx-2 border text-center w-8"
+                      type="text"
+                      onChange={(e) => quantityHandler(e)}
+                      value={Item.count}
+                    />
+                    <button onClick={() => context.increase(Item.id)}>
+                      <svg
+                        name="increase"
+                        className="fill-current text-gray-600 w-3 cursor-pointer"
+                        viewBox="0 0 448 512"
+                      >
+                        <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                      </svg>{" "}
+                    </button>
+                  </div>
                   <button
                     onClick={() => {
                       context.removeFromCart(Item.id);
-                      toast.error("Deleted  ");
+                      toast.error("Deleted");
                     }}
-                    className=" border text-center p-1  w-auto bg"
+                    className=" border text-center p-1 w-auto max-w-1/2 bg"
                   >
                     Remove
-                  </button>
-                  <input
-                    className="mx-2 border text-center w-8"
-                    type="text"
-                    onChange={(e) => quantityHandler(e)}
-                    value={Item.count}
-                  />
-                  <button onClick={() => context.increase(Item.id)}>
-                    <svg
-                      name="increase"
-                      className="fill-current text-gray-600 w-3 cursor-pointer"
-                      viewBox="0 0 448 512"
-                    >
-                      <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                    </svg>{" "}
                   </button>
                 </div>
                 <div>
