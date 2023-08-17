@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext } from "react";
 import { BooksContext } from "../context/Context";
 import { Toaster, toast } from "sonner";
-import Paypal from "../componements/Paypal";
+
 export default function Cart() {
   const context = useContext(BooksContext);
 
@@ -102,9 +102,7 @@ export default function Cart() {
                 </div>
               </div>
             ))}
-            <div className=" fixed bottom-3 right-6   flex justify-end  ">
-              <Paypal />
-            </div>
+          
 
             <Toaster />
           </div>
