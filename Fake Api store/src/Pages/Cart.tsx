@@ -25,8 +25,7 @@ export default function Cart() {
     }
   };
   return (
-  return (
-    <div className="container mx-auto mt-5 flex-1">
+  <div className="container mx-auto mt-5 flex-1">
       <div className="flex flex-wrap shadow-md my-10">
         <div className="w-full md:w-1/1 bg-white px-10 py-10">
           <div className="flex justify-between border-b pb-8">
@@ -105,7 +104,6 @@ export default function Cart() {
               </div>
             ))}
          
-
             <Toaster />
           </div>
         </div>
