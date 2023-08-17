@@ -1,44 +1,55 @@
 import image from "../assets/image/ImageHero.png";
+import Adidas from "../assets/image/Brands/adis001_adidas_logo_e1468257076328.jpg";
+import Dior from "../assets/image/Brands/CHRR004_christian_dior_new3874_jpg.jpg";
+import Fila from "../assets/image/Brands/fila001_fila_logo.png";
+import Gucci from "../assets/image/Brands/guci001_logo_gucci.png";
+import hermes from "../assets/image/Brands/hers002_eda8f21950d90e0bbb74542f1df2690e.png";
+import HM from "../assets/image/Brands/hmaa001_800px_hm_logosvg.png";
+import Levis from "../assets/image/Brands/levs002_levis_logo_quersvg.png";
+import Louis_vuitton from "../assets/image/Brands/loun002_louis_vuitton_logo.jpg";
+import nike from "../assets/image/Brands/nike001_1200px_logo_nikesvg.png";
+import rolex from "../assets/image/Brands/rolx002_1200px_rolex_logosvg.png";
+
 const brands = [
   {
     name: "Adidas",
-    url: "Fake%20Api%20store/src/assets/image/Brands/adis001_adidas_logo_e1468257076328.jpg",
+    url: Adidas,
   },
   {
     name: "Dior",
-    url: "../assets/image/Brands/CHRR004_christian_dior_new3874_jpg.jpg",
+    url: Dior,
   },
   {
     name: "Fila",
-    url: "../assets/image/Brands/fila001_fila_logo.png",
+    url: Fila,
   },
   {
     name: "Gucci",
-    url: "../assets/image/Brands/guci001_logo_gucci.png",
+    url: Gucci,
   },
   {
     name: "hermes",
-    url: "../assets/image/Brands/hers002_eda8f21950d90e0bbb74542f1df2690e.png",
+    url: hermes,
   },
   {
     name: "H&M",
-    url: "../assets/image/Brands/hmaa001_800px_hm_logosvg.png",
+    url: HM,
   },
   {
     name: "Levis",
-    url: "/src/assets/image/Brands/levs002_levis_logo_quersvg.png",
+    url: Levis,
   },
   {
     name: "Louis_vuitton",
-    url: "../assets/image/Brands/loun002_louis_vuitton_logo.jpg",
+    url: Louis_vuitton,
   },
   {
     name: "nike",
-    url: "../assets/image/Brands/nike001_1200px_logo_nikesvg.png",
+    url: nike,
   },
   {
     name: "rolex",
-    url: "../assets/image/Brands/rolx002_1200px_rolex_logosvg.png",
+    url: rolex,
   },
 ];
 function Content() {
