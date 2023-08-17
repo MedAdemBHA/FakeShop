@@ -25,6 +25,7 @@ export default function Cart() {
     }
   };
   return (
+  return (
     <div className="container mx-auto mt-5 flex-1">
       <div className="flex flex-wrap shadow-md my-10">
         <div className="w-full md:w-1/1 bg-white px-10 py-10">
@@ -49,7 +50,7 @@ export default function Cart() {
           <div>
             {context.state.cart.map((Item) => (
               <div
-                className="flex items-center gap-10 mt-10 mb-5 border-b pb-5 "
+                className="flex items-center gap-3   mt-10 mb-5 border-b pb-5 "
                 key={Item.id}
               >
                 <div className="flex w-1/3 items-center">
@@ -60,7 +61,7 @@ export default function Cart() {
                     <span className="font-bold text-sm">{Item.title}</span>
                   </div>
                 </div>
-               <div className="flex md:flex-row   ml-2 flex-col  justify-center gap-5 w-1/3">
+                <div className="flex md:flex-row   ml-2 flex-col  justify-center gap-2 w-1/3">
                   <div className=" flex gap-2  ml-2">
                     <button onClick={() => context.decrease(Item.id)}>
                       <svg
@@ -103,7 +104,7 @@ export default function Cart() {
                 </div>
               </div>
             ))}
-          
+         
 
             <Toaster />
           </div>
