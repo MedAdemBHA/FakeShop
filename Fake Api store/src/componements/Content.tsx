@@ -79,7 +79,7 @@ function Content() {
               key={index}
               className="bg-white p-4 flex justify-center items-center rounded-lg shadow-lg border"
             >
-              <img src={brand.url} alt={brand.name} />
+              <img src={process.env.PUBLIC_URL + brand.url} alt={brand.name} />
             </div>
           ))}
         </div>
