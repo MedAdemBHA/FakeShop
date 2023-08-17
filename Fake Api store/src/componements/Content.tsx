@@ -6,23 +6,23 @@ const brands = [
   },
   {
     name: "Dior",
-    url: "/src/assets/image/Brands/CHRR004_christian_dior_new3874_jpg.jpg",
+    url: "../assets/image/Brands/CHRR004_christian_dior_new3874_jpg.jpg",
   },
   {
     name: "Fila",
-    url: "/src/assets/image/Brands/fila001_fila_logo.png",
+    url: "../assets/image/Brands/fila001_fila_logo.png",
   },
   {
     name: "Gucci",
-    url: "/src/assets/image/Brands/guci001_logo_gucci.png",
+    url: "../assets/image/Brands/guci001_logo_gucci.png",
   },
   {
     name: "hermes",
-    url: "/src/assets/image/Brands/hers002_eda8f21950d90e0bbb74542f1df2690e.png",
+    url: "../assets/image/Brands/hers002_eda8f21950d90e0bbb74542f1df2690e.png",
   },
   {
     name: "H&M",
-    url: "/src/assets/image/Brands/hmaa001_800px_hm_logosvg.png",
+    url: "../assets/image/Brands/hmaa001_800px_hm_logosvg.png",
   },
   {
     name: "Levis",
@@ -30,15 +30,15 @@ const brands = [
   },
   {
     name: "Louis_vuitton",
-    url: "/src/assets/image/Brands/loun002_louis_vuitton_logo.jpg",
+    url: "../assets/image/Brands/loun002_louis_vuitton_logo.jpg",
   },
   {
     name: "nike",
-    url: "/src/assets/image/Brands/nike001_1200px_logo_nikesvg.png",
+    url: "../assets/image/Brands/nike001_1200px_logo_nikesvg.png",
   },
   {
     name: "rolex",
-    url: "/src/assets/image/Brands/rolx002_1200px_rolex_logosvg.png",
+    url: "../assets/image/Brands/rolx002_1200px_rolex_logosvg.png",
   },
 ];
 function Content() {
@@ -79,7 +79,7 @@ function Content() {
               key={index}
               className="bg-white p-4 flex justify-center items-center rounded-lg shadow-lg border"
             >
-              <img src={process.env.PUBLIC_URL + brand.url} alt={brand.name} />
+              <img src={brand.url} alt={brand.name} />
             </div>
           ))}
         </div>
