@@ -2,7 +2,7 @@ import image from "../assets/image/ImageHero.png";
 const brands = [
   {
     name: "Adidas",
-    url: "Fake Api store/src/assets/image/Brands/adis001_adidas_logo_e1468257076328.jpg",
+    url: "Fake%20Api%20store/src/assets/image/Brands/adis001_adidas_logo_e1468257076328.jpg",
   },
   {
     name: "Dior",
