@@ -25,7 +25,7 @@ export default function Cart() {
     }
   };
   return (
-  <div className="container mx-auto mt-5 flex-1">
+    <div className="container mx-auto mt-5 flex-1">
       <div className="flex flex-wrap shadow-md my-10">
         <div className="w-full md:w-1/1 bg-white px-10 py-10">
           <div className="flex justify-between border-b pb-8">
@@ -46,66 +46,70 @@ export default function Cart() {
               Total
             </h3>
           </div>
-          <div>
-            {context.state.cart.map((Item) => (
-              <div
-                className="flex items-center gap-3   mt-10 mb-5 border-b pb-5 "
-                key={Item.id}
-              >
-                <div className="flex w-1/3 items-center">
-                  <div className="w-20">
-                    <img src={Item.image} />
+          {context.state.cart.length === 0 ? (
+            <p className="text-center my-5">Your cart is empty.</p>
+          ) : (
+            <div>
+              {context.state.cart.map((Item) => (
+                <div
+                  className="flex items-center gap-3   mt-10 mb-5 border-b pb-5 "
+                  key={Item.id}
+                >
+                  <div className="flex w-1/3 items-center">
+                    <div className="w-20">
+                      <img src={Item.image} />
+                    </div>
+                    <div className="flex flex-col justify-between ml-4 flex-grow">
+                      <span className="font-bold text-sm">{Item.title}</span>
+                    </div>
                   </div>
-                  <div className="flex flex-col justify-between ml-4 flex-grow">
-                    <span className="font-bold text-sm">{Item.title}</span>
-                  </div>
-                </div>
-                <div className="flex md:flex-row   ml-2 flex-col  justify-center gap-2 w-1/3">
-                  <div className=" flex gap-2  ml-2">
-                    <button onClick={() => context.decrease(Item.id)}>
-                      <svg
-                        className="fill-current text-gray-600 w-3 cursor-pointer"
-                        viewBox="0 0 448 512"
-                      >
-                        <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                      </svg>
+                  <div className="flex md:flex-row   ml-2 flex-col  justify-center gap-2 w-1/3">
+                    <div className=" flex gap-2  ml-2">
+                      <button onClick={() => context.decrease(Item.id)}>
+                        <svg
+                          className="fill-current text-gray-600 w-3 cursor-pointer"
+                          viewBox="0 0 448 512"
+                        >
+                          <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                        </svg>
+                      </button>
+                      <input
+                        className="mx-2 border text-center w-8"
+                        type="text"
+                        onChange={(e) => quantityHandler(e)}
+                        value={Item.count}
+                      />
+                      <button onClick={() => context.increase(Item.id)}>
+                        <svg
+                          name="increase"
+                          className="fill-current text-gray-600 w-3 cursor-pointer"
+                          viewBox="0 0 448 512"
+                        >
+                          <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                        </svg>{" "}
+                      </button>
+                    </div>
+                    <button
+                      onClick={() => {
+                        context.removeFromCart(Item.id);
+                        toast.error("Deleted");
+                      }}
+                      className=" border text-center p-1 w-auto max-w-1/2 bg"
+                    >
+                      Remove
                     </button>
-                    <input
-                      className="mx-2 border text-center w-8"
-                      type="text"
-                      onChange={(e) => quantityHandler(e)}
-                      value={Item.count}
-                    />
-                    <button onClick={() => context.increase(Item.id)}>
-                      <svg
-                        name="increase"
-                        className="fill-current text-gray-600 w-3 cursor-pointer"
-                        viewBox="0 0 448 512"
-                      >
-                        <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                      </svg>{" "}
-                    </button>
                   </div>
-                  <button
-                    onClick={() => {
-                      context.removeFromCart(Item.id);
-                      toast.error("Deleted");
-                    }}
-                    className=" border text-center p-1 w-auto max-w-1/2 bg"
-                  >
-                    Remove
-                  </button>
+                  <div className="text-center w-1/3 font-semibold text-sm">
+                    <span className="text-center w-1/3 font-semibold text-sm">
+                      ${(Item.count * Item.price).toFixed(2)}
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-center w-1/3 font-semibold text-sm">
-                    ${(Item.count * Item.price).toFixed(2)}
-                  </span>
-                </div>
-              </div>
-            ))}
-         
-            <Toaster />
-          </div>
+              ))}
+
+              <Toaster />
+            </div>
+          )}
         </div>
       </div>
     </div>
