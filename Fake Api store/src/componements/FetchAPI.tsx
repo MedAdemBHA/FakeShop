@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-
+import { motion } from "framer-motion";
 import { Toaster, toast } from "sonner";
 import "react-spinner-animated/dist/index.css";
 import { useContext, useState } from "react";
@@ -22,6 +22,44 @@ function FetchAPI() {
     fetch("https://btngan-data.onrender.com/products").then((res) => res.json())
   );
 
+  // Filtering the data based on the searchTitle
+
+  const filteredData = data?.filter((value) => {
+    // If no search title is provided, return all items
+    if (searchTitle === "") {
+      return true;
+      // If the current item's title contains the searchTitle (case-insensitive)
+    } else if (value.title.toLowerCase().includes(searchTitle.toLowerCase())) {
+      return true;
+    }
+    return false;
+  });
+
+  if (filteredData?.length === 0) {
+    return (
+      <div className="text-center  mx2">
+        <div className="flex flex-wrap justify-center md:space-x-2">
+          <div className="flex justify-end w-11/12">
+            <div className="xl:w-96">
+              <div className="input-group relative flex flex-wrap items-stretch">
+                <input
+                  type="search"
+                  className="form-control relative  min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid   border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-200 focus:outline-none md:z-4 "
+                  placeholder="Search"
+                  aria-label="Search"
+                  aria-describedby="button-addon2"
+                  onChange={(e) => setSearchTitle(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="  text-2xl m-[100px]">
+          No results found for your search.
+        </p>
+      </div>
+    );
+  }
   if (isLoading)
     return (
       <div className="md:space-x-2">
@@ -70,72 +108,69 @@ function FetchAPI() {
       </div>
 
       <div className="mx-auto grid max-w-6xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {data
-          ?.filter((value) => {
-            if (searchTitle === "") {
-              return value;
-            } else if (
-              value.title.toLowerCase().includes(searchTitle.toLowerCase())
-            ) {
-              return value;
-            }
-          })
-          .map((item) => (
-            <div
-              key={item.id}
-              className="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl  hover:scale-105 duration-300 "
+        {filteredData?.map((item) => (
+          <motion.div
+            initial={{ scale: 0.7 }}
+            animate={{ rotate: 0, scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+            }}
+            key={item.id}
+            className="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl  hover:scale-105 duration-300 "
+          >
+            <Link
+              to={`/store/${item.id}`}
+              className="relative flex items-end overflow-hidden rounded-xl  "
             >
-              <Link
-                to={`/store/${item.id}`}
-                className="relative flex items-end overflow-hidden rounded-xl  "
-              >
-                <img
-                  className="object-contain h-48 w-96"
-                  src={item.image}
-                  alt={item.description}
-                />
-              </Link>
+              <img
+                className="object-contain h-48 w-96"
+                src={item.image}
+                alt={item.description}
+              />
+            </Link>
 
-              <div className="mt-1 p-2">
-                <h2 className="text-slate-700 text-ellipsis overflow-hidden h-7">
-                  {item.title}
-                </h2>
+            <div className="mt-1 p-2">
+              <h2 className="text-slate-700 text-ellipsis overflow-hidden h-7">
+                {item.title}
+              </h2>
 
-                <div className="mt-3 flex items-end justify-between">
-                  <p className="text-lg font-bold  text-cyan-500">
-                    ${item.price}
-                  </p>
+              <div className="mt-3 flex items-end justify-between">
+                <p className="text-lg font-bold  text-cyan-500">
+                  ${item.price}
+                </p>
 
-                  <div className="flex items-center space-x-1.5 rounded-lg bg-rose-300  px-4 py-1.5 text-white duration-100 hover:bg-red-200">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      className="h-4 w-4"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                      />
-                    </svg>
+                <div className="flex items-center space-x-1.5 rounded-lg bg-rose-300  px-4 py-1.5 text-white duration-100 hover:bg-red-200">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="h-4 w-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                    />
+                  </svg>
 
-                    <button
-                      className="text-sm"
-                      onClick={() => {
-                        context.addToCart(item);
-                        toast.success("product  has been added");
-                      }}
-                    >
-                      Click me
-                    </button>
-                  </div>
+                  <button
+                    className="text-sm"
+                    onClick={() => {
+                      context.addToCart(item);
+                      toast.success("product  has been added");
+                    }}
+                  >
+                    Click me
+                  </button>
                 </div>
               </div>
             </div>
-          ))}
+          </motion.div>
+        ))}
       </div>
       <Toaster />
     </div>
